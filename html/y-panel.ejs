@@ -1,0 +1,150 @@
+<%- include('ek/header', {bot, user, path}) %>
+<div class="container">
+	<div class="info">
+		<div align="center">
+      
+<% if (bot.ayar.has('botlar')) { %>
+
+<!-- Tüm Botlar -->
+<a class="btn btn-default" style="background-color:#444; color:#fff; width:100%;" data-toggle="collapse" data-target="#tum">Tüm Botlar</a>
+<div id="tum" class="collapse in">
+<div style="overflow-x:auto;">
+<table class="table" style="background-color:#222">
+<tr>
+<th>Bot Adı</th>
+<th>Bot ID</th>
+<th>Bot Prefix</th>
+<th>Sahip</th>
+<th>Sahip ID</th>
+<th>Durum</th>
+</tr>
+
+<%for(var i = 0; i < Object.keys(bot.ayar.fetch('botlar')).length; i++) {%>
+<% let id = Object.keys(bot.ayar.fetch('botlar'))[i] %>
+
+<td scope="row"><%=bot.ayar.fetch(`botlar.${id}.isim`)%></td>
+<td><%=bot.ayar.fetch(`botlar.${id}.id`)%></td>
+<td><%=bot.ayar.fetch(`botlar.${id}.prefix`)%></td>
+<td><%=bot.ayar.fetch(`botlar.${id}.sahip`)%></td>
+<td><%=bot.ayar.fetch(`botlar.${id}.sahipid`)%></td>
+<td><%=bot.ayar.has(`botlar.${id}.durum`) ? bot.ayar.fetch(`botlar.${id}.durum`) : 'Beklemede'%></td>
+</tr>
+<% } %>
+
+</table>
+  </div></div>
+<br><br>
+
+<!-- Beklemede olan botlar -->
+<a class="btn btn-default" style="background-color:#444; color:#fff; width:100%;" data-toggle="collapse" data-target="#onaybekleyen">Beklemede Olan Botlar</a>
+<div id="onaybekleyen" class="collapse in">
+<div style="overflow-x:auto;">
+<table class="table" style="background-color:#222">
+<tr>
+<th>İşlem</th>
+<th>Bot Adı</th>
+<th>Bot ID</th>
+<th style="width:10%;">Bot Prefix</th>
+</tr>
+
+<%for(var i = 0; i < Object.keys(bot.ayar.fetch('botlar')).length; i++) {%>
+<% let id = Object.keys(bot.ayar.fetch('botlar'))[i] %>
+<% if (bot.ayar.fetch(`botlar.${id}.durum`) === 'Beklemede' || bot.ayar.has(`botlar.${id}.durum`) === false) { %>
+<tr>
+<td><a class="btn btn-success" href="/botyonetici/onayla/<%=id%>">Onayla<i aria-hidden="true"></i></a>
+<a class="btn btn-danger" href="/botyonetici/reddet/<%=id%>">Reddet<i aria-hidden="true"></i></a>
+<a class="btn btn-primary" href="https://discordapp.com/oauth2/authorize?client_id=<%=id%>&scope=bot&permissions=0" target="_blank" role="button">Davet Et (Perm: 0)</a>
+<a class="btn btn-primary" href="https://discordapp.com/oauth2/authorize?client_id=<%=id%>&scope=bot&permissions=8" target="_blank" role="button">Davet Et (Perm: 8)</a></td>
+<td><%=bot.ayar.fetch(`botlar.${id}.isim`)%></td>
+<td><%=bot.ayar.fetch(`botlar.${id}.id`)%></td>
+<td><%=bot.ayar.fetch(`botlar.${id}.prefix`)%></td>
+</tr>
+<% } %>
+<%}%>
+</table>
+</div>
+</div>
+  <br><br>
+
+<!-- Onaylanmış Botlar -->
+<a class="btn btn-default" data-toggle="collapse" style="background-color:#444; color:#fff; width:100%;" data-target="#onaylı">Onaylanmış Botlar</a>
+<div id="onaylı" class="collapse in">
+	<div style="overflow-x:auto;">
+		<table class="table" style="background-color:#222">
+		<tr>
+		<th>İşlem</th>
+		<th>Bot Adı</th>
+		<th>Bot ID</th>
+		<th style="width:10%;">Bot Prefix</th>
+		</tr>	
+      
+		<%for(var i = 0; i < Object.keys(bot.ayar.fetch('botlar')).length; i++) {%>
+		<% let id = Object.keys(bot.ayar.fetch('botlar'))[i] %>
+		<% if (bot.ayar.fetch(`botlar.${id}.durum`) === 'Onaylı') { %>
+	  <tr>
+		<td><a class="btn btn-warning" href="/botyonetici/bekleme/<%=id%>">Beklemeye Al<i aria-hidden="true"></i></a>
+		<a class="btn btn-danger" href="/botyonetici/reddet/<%=id%>">Reddet<i aria-hidden="true"></i></a>
+		<a class="btn btn-danger" href="/botyonetici/sal/<%=id%>">Sertifika Ver<i aria-hidden="true"></i></a>
+		<a class="btn btn-danger" href="/botyonetici/ssil/<%=id%>">Sertifika Sil<i aria-hidden="true"></i></a>
+		<a class="btn btn-primary" href="https://discordapp.com/oauth2/authorize?client_id=<%=id%>&scope=bot&permissions=0" target="_blank" role="button">Davet Et (Perm: 0)</a>
+    <a class="btn btn-primary" href="https://discordapp.com/oauth2/authorize?client_id=<%=id%>&scope=bot&permissions=8" target="_blank" role="button">Davet Et (Perm: 8)</a></td>
+		<td><%=bot.ayar.fetch(`botlar.${id}.isim`)%></td>
+		<td><%=bot.ayar.fetch(`botlar.${id}.id`)%></td>
+		<td><%=bot.ayar.fetch(`botlar.${id}.prefix`)%></td>
+		</tr>
+		<% } %>
+		<%}%>
+		</table>
+		</div>
+</div>
+  <br><br>
+
+<!-- Reddedilmiş Botlar -->
+<a class="btn btn-default" data-toggle="collapse" style="background-color:#444; color:#fff; width:100%;" data-target="#onaysız">Reddedilmiş Botlar</a>
+<div id="onaysız" class="collapse in">
+	<div style="overflow-x:auto;">
+		<table class="table" style="background-color:#222">
+		<tr>
+		<th>İşlem</th>
+		<th>Bot Adı</th>
+		<th>Bot ID</th>
+		<th style="width:10%;">Bot Prefix</th>
+		</tr>	
+		<%for(var i = 0; i < Object.keys(bot.ayar.fetch('botlar')).length; i++) {%>
+		<% let id = Object.keys(bot.ayar.fetch('botlar'))[i] %>
+		<% if (bot.ayar.fetch(`botlar.${id}.durum`) === 'Reddedilmiş') { %>
+		<tr>
+		<td><a class="btn btn-success" href="/botyonetici/onayla/<%=id%>">Onayla<i aria-hidden="true"></i></a>
+		<a class="btn btn-warning" href="/botyonetici/bekleme/<%=id%>">Beklemeye Al<i aria-hidden="true"></i></a>
+    <a class="btn btn-primary" href="https://discordapp.com/oauth2/authorize?client_id=<%=id%>&scope=bot&permissions=0" target="_blank" role="button">Davet Et (Perm: 0)</a>
+    <a class="btn btn-primary" href="https://discordapp.com/oauth2/authorize?client_id=<%=id%>&scope=bot&permissions=8" target="_blank" role="button">Davet Et (Perm: 8)</a></td>
+		<td><%=bot.ayar.fetch(`botlar.${id}.isim`)%></td>
+		<td><%=bot.ayar.fetch(`botlar.${id}.id`)%></td>
+		<td><%=bot.ayar.fetch(`botlar.${id}.prefix`)%></td>
+		</tr>
+		<% } %>
+		<%}%>
+		</table>
+		</div>
+</div>
+  <br><br>
+
+<% } else {%>
+<h5 style="color:#fff">
+Sistemde hiç bot bulunmuyor.
+</h5>
+<% } %>
+
+</div>
+</div>
+</div>
+</div></div><div></div>
+<style>
+  .info{
+  margin: 40px;
+  color: Black;
+  line-height: 35px;
+  margin-left: 20%;
+  width: 80%;
+  }
+</style>

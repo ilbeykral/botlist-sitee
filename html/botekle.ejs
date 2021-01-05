@@ -1,0 +1,118 @@
+<%- include('ek/header', {bot, user, path}) %>
+<div class="info">
+<form method="post">
+		<div style="margin-top:15px;" class="sss">
+  <h6 style="font-size:18px;color:#f8f8ff;">Client ID <a style="color:red">*</a><br> <input style="border-radius:5px;width:330px;height:30px;text-align: center;" name="botid" id="botid" placeholder="Örneğin; <%=bot.user.id%>" required="required"><h6>
+  <h6 style="font-size:18px;color:#f8f8ff;">Bot Prefix <a style="color:red">*</a><br> <input style="border-radius:5px;width:330px;height:30px;text-align: center;" name="botprefix" id="botprefix" placeholder="!" required="required"><h6>  
+  <h6 style="font-size:18px;color:#f8f8ff;">Kütüphane <a style="color:red">*</a><br>      <select style="width:330px;" id="kutuphane" name="kutuphane" required="required">
+       <option disabled selected>Bir kütüphane seçiniz.</option>
+       <option value="discordcr" >discordcr</option>
+        
+          <option value="Nyxx" >Nyxx</option>
+        
+          <option value="Discord.Net" >Discord.Net</option>
+        
+          <option value="DSharpPlus" >DSharpPlus</option>
+        
+          <option value="Nostrum" >Nostrum</option>
+        
+          <option value="coxir" >coxir</option>
+        
+          <option value="DiscordGo" >DiscordGo</option>
+        
+          <option value="Discord4J" >Discord4J</option>
+        
+          <option value="Javacord" >Lrows Sikiş</option>
+        
+          <option value="JDA" >JDA</option>
+        
+          <option value="discord.js" >discord.js</option>
+        
+          <option value="Eris" >Eris</option>
+        
+          <option value="Discordia" >Discordia</option>
+        
+          <option value="RestCord" >RestCord</option>
+        
+          <option value="Yasmin" >Yasmin</option>
+        
+          <option value="disco" >disco</option>
+        
+          <option value="discord.py" >discord.py</option>
+        
+          <option value="discordrb" >discordrb</option>
+        
+          <option value="serenity" >serenity</option>
+        
+          <option value="SwiftDiscord" >SwiftDiscord</option>
+        
+          <option value="Sword" >Sword</option>
+        
+        <option value="Other" >Diğer</option>
+     </select>
+    
+    
+    
+    
+    
+    <h6>   
+    <h6 style="font-size:18px;color:#f8f8ff;">Kısa Açıklama <a style="color:red">*</a><br> <input style="border-radius:5px;width:330px;height:30px;text-align: center;" name="kisa-aciklama" id="kisa-aciklama" placeholder="Botunuzun kısa açıklamasını yazınız." maxlength="50" required="required"><h6> 
+        <h6 style="font-size:18px;color:#f8f8ff;">Uzun Açıklama <a style="color:red">*</a><br> <input style="border-radius:5px;width:330px;height:30px;text-align: center;" name="uzun-aciklama" id="uzun-aciklama" placeholder="Botunuzun uzun açıklamasını yazınız." minlength="50" required="required"><h6> 
+    <h6 style="font-size:18px;color:#f8f8ff;">Etiketler <a style="color:red">*</a><br> <select multiple id="etikett" name="etikett" multiple class="form-control" id="exampleFormControlSelect2">
+      <option value="Moderasyon">Moderasyon</option>
+      <option value="Müzik">Müzik</option>
+      <option value="Ayarlar">Ayarlar</option>
+      <option value="Eğlence">Eğlence</option>
+      <option value="Web Panel">Web Panel</option>
+      </select></h6>
+             <p>
+         <a style="color:red">Not : </a><a style="color:#f8f8ff;">Bilgisayarda iseniz etiketleri <i>CTRL</i> tuşuna basılı tutarak seçiniz.</a>
+       </p>
+    <h6 style="font-size:18px;color:#f8f8ff;">Web Site <a style="color:red">*</a><br> <input style="border-radius:5px;width:330px;height:30px;text-align: center;" name="botsite" id="botsite" placeholder="Var ise web site url yazınız."><h6> 
+    <h6 style="font-size:18px;color:#f8f8ff;">Destek Sunucusu <a style="color:red">*</a><br> <input style="border-radius:5px;width:330px;height:30px;text-align: center;" name="botdestek" id="botdestek" placeholder="Discord Destek Sunucu Url">
+      
+         <h6 style="color:red">
+     Yanında * simgesi olan kutucuklar doldurulmak zorundadır!
+   </h6>
+      				<div style="width: 100%; text-align: left; margin-top: 20px;">
+					<button style="border-radius: 10px; background-color:#00a1ff" type="submit" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Başvuruyu Gönder<i aria-hidden='true'></i></button>
+				</div>
+      </div>
+   </div>
+      </form>
+		</div>
+	</div>
+</div>
+</div>
+
+
+<style>
+  .info{
+
+  margin: 50px;
+  color: #212121;
+  line-height: 35px;
+  margin-left: 20%;
+  margin-top: -2%;
+  }
+  .ss{
+            all: unset;
+            background: transparent;
+            border: 1px solid #212121;
+            padding: 0.5em 4em;
+            border-radius: 10px;
+            display: inline-block;
+            position: relative;
+            transition: all 300ms ease;
+            color:#212121;
+  }
+    .jumbotron {
+    background:transparent;
+  }
+  .sss input {
+    border: 1px solid #212121;
+  }
+  .sss select {
+    border: 1px solid #212121;
+  }
+</style>

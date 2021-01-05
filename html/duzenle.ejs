@@ -1,0 +1,192 @@
+<%- include('ek/header', {bot, user, path}) %>
+<% if(bot.ayar.fetch(`botlar.${id}.sahipid`) === user.id) { %>
+<% } else { %>
+            <div class="jumbotron">
+            Bu botun sahibi değilsin!
+            </div>
+            <% } %>
+<div class="info">
+<div class="container is-fullhd">
+	<div class="row justify-content-md-center">
+	</div>
+ <form method="post">
+				
+   <div align="center" class="jumbotron" style="color:#212121; font-size: 20px;">
+    <h2 style="color: #212121;margin-top:0px;">Bot Ekleme</h2>
+   <br>
+		<div><i aria-hidden="true"></i>Bot Prefix <a style="color:red">*</a></div>
+		<div>
+      <input class="ss" style="text-align: center;" name="botprefix" id="botprefix"
+									value="<%=bot.ayar.fetch(`botlar.${id}.prefix`)%>" required="required">
+     </div>
+     <br>
+     <div><i aria-hidden="true"></i>Kütüphane <a style="color:red">*</a></div>
+      <div class="select-style">
+     <select id="kutuphane" name="kutuphane" required="required">
+       <option value="<%=bot.ayar.fetch(`botlar.${id}.kutuphane`)%>" selected><%=bot.ayar.fetch(`botlar.${id}.kutuphane`)%></option>
+       <option value="discordcr" >discordcr</option>
+        
+          <option value="Nyxx" >Nyxx</option>
+        
+          <option value="Discord.Net" >Discord.Net</option>
+        
+          <option value="DSharpPlus" >DSharpPlus</option>
+        
+          <option value="Nostrum" >Nostrum</option>
+        
+          <option value="coxir" >coxir</option>
+        
+          <option value="DiscordGo" >DiscordGo</option>
+        
+          <option value="Discord4J" >Discord4J</option>
+        
+          <option value="Javacord" >Lrows Ana Bacı Sövüş</option>
+        
+          <option value="JDA" >JDA</option>
+        
+          <option value="discord.js" >discord.js</option>
+        
+          <option value="Eris" >Eris</option>
+        
+          <option value="Discordia" >Discordia</option>
+        
+          <option value="RestCord" >RestCord</option>
+        
+          <option value="Yasmin" >Yasmin</option>
+        
+          <option value="disco" >disco</option>
+        
+          <option value="discord.py" >discord.py</option>
+        
+          <option value="discordrb" >discordrb</option>
+        
+          <option value="serenity" >serenity</option>
+        
+          <option value="SwiftDiscord" >SwiftDiscord</option>
+        
+          <option value="Sword" >Sword</option>
+        
+        <option value="Other" >Diğer</option>
+     </select>
+     </div>
+     <br>
+     <div><i aria-hidden="true"></i>Kısa Açıklama <a style="color:red">*</a></div>
+		<div>
+      <input class="ss" style="text-align: center; height:60px" name="kisa-aciklama" id="kisa-aciklama"
+                value="<%=bot.ayar.fetch(`botlar.${id}.kisaaciklama`)%>" maxlength="50" required="required">
+     </div>
+     <br>
+     <div><i aria-hidden="true"></i>Uzun Açıklama <a style="color:red">*</a></div>
+		<div>
+      <% var xx %>
+<% for (var ii = 0; ii < bot.tags.length; ii++) { %>
+  <% if(bot.ayar.fetch(`botlar.${id}.uzunaciklama`).includes(bot.tags[ii]) === false) {%>
+    <% xx = false %>
+ <% } %>
+    <% if (bot.ayar.fetch(`botlar.${id}.uzunaciklama`).includes(bot.tags[ii]) === true) { %>
+     <% x = true %>
+    <% } %>
+<% } %>
+      
+        <!--<pre style="height:150px; background-color:#222; color:#fff;" name="uzun-aciklama" id="uzun-aciklama"><code>
+        <%= //bot.ayar.fetch(`${id}.uzunaciklama`) %>
+        </code></pre>-->
+      
+      <textarea class="ss" style="height:150px; background-color:transparent; color:#212121;" name="uzun-aciklama" id="uzun-aciklama" value="<%=bot.ayar.fetch(`${id}.uzunaciklama`)%>" minlength="50" required="required">      
+        <%= bot.ayar.fetch(`botlar.${id}.uzunaciklama`) %>
+      </textarea>
+     </div>
+     <br>
+     <div><i aria-hidden="true"></i>Etiketler <a style="color:red">*</a></div>
+     <div>
+      <select multiple id="etikett" name="etikett" style="border-radius:4px; background-color:transparent; color:#212121">
+        <% if(bot.ayar.fetch(`botlar.${id}.etiket`).includes('Moderasyon')) { %>
+        <option value="Moderasyon" selected>Moderasyon</option>
+        <% } else { %>
+        <option value="Moderasyon">Moderasyon</option>
+        <% } %>
+        <% if(bot.ayar.fetch(`botlar.${id}.etiket`).includes('Müzik')) { %>
+        <option value="Müzik" selected>Müzik</option>
+        <% } else { %>
+        <option value="Müzik">Müzik</option>
+        <% } %>
+        <% if(bot.ayar.fetch(`botlar.${id}.etiket`).includes('Ayarlar')) { %>
+        <option value="Ayarlar" selected>Ayarlar</option>
+        <% } else { %>
+        <option value="Ayarlar">Ayarlar</option>
+        <% } %>
+        <% if(bot.ayar.fetch(`botlar.${id}.etiket`).includes('Eğlence')) { %>
+        <option value="Eğlence" selected>Eğlence</option>
+        <% } else { %>
+        <option value="Eğlence">Eğlence</option>
+        <% } %>
+        <% if(bot.ayar.fetch(`botlar.${id}.etiket`).includes('Web Panel')) { %>
+        <option value="Web Panel" selected>Web Panel</option>
+        <% } else { %>
+        <option value="Web Panel">Web Panel</option>
+        <% } %>
+       </select>
+       <p>
+         <a style="color:red">Not: </a><a style="color:212121">Bilgisayarda iseniz etiketleri <i>CTRL</i> tuşuna basılı tutarak seçiniz.</a>
+       </p>
+     </div>
+     <br>
+     <div><i aria-hidden="true"></i>Web Site URL'si</div>
+		<div>
+		<% if(!bot.ayar.has(`botlar.${id}.site`)) { %>
+      <input class="ss" style="text-align: center;" name="botsite" id="botsite"
+                placeholder="Var ise web site url yazınız.">
+                <% } else { %>
+                    <input type="url" style="text-align: center;" name="botsite" id="botsite"
+                value="<%=bot.ayar.fetch(`botlar.${id}.site`)%>">
+                <% } %>
+     </div>
+     <br>
+     <div><i aria-hidden="true"></i>Destek Sunucusu URL'si</div>
+		<div>
+      <% if(!bot.ayar.has(`botlar.${id}.destek`)) { %>
+      <input class="ss" style="text-align: center;" name="botdestek" id="botdestek"
+                placeholder="Botunuzun var ise Discord destek sunucusu URL'sini yazınız.">
+                <% } else { %>
+                    <input class="ss" style="text-align: center;" name="botdestek" id="botdestek"
+                value="<%=bot.ayar.fetch(`botlar.${id}.destek`)%>">
+                <% } %>
+     </div>
+   <br>
+   
+   <h6 style="color:red">
+     Yanında * simgesi olan kutucuklar doldurulmak zorundadır!
+   </h6>
+
+				<div style="width: 100%; text-align: center; margin-top: 20px;">
+					<button style="border-radius: 100px; background-color:#00a1ff" type="submit" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Düzenle<i aria-hidden='true'></i></button>
+				</div>
+   </div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+<style>
+  .info{
+  margin: 50px;
+  color: #212121;
+  line-height: 35px;
+  margin-left: 20%;
+  margin-top: -2%;
+  }
+  .ss{
+            all: unset;
+            background: transparent;
+            border: 1px solid #212121;
+            padding: 0.5em 4em;
+            border-radius: 10px;
+            display: inline-block;
+            position: relative;
+            transition: all 300ms ease;
+            color:#212121;
+  }
+    .jumbotron {
+    background:transparent;
+  }
+</style>
