@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+ 
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700&amp;subset=latin-ext" rel="stylesheet">
+  <link href="https://bootswatch.com/4/cyborg/bootstrap.min.css" rel="stylesheet" />
+  
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/v/bs4/dt-1.10.16/cr-1.4.1/r-2.2.0/datatables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" integrity="sha256-zG8v+NWiZxmjNi+CvUYnZwKtHzFtdO8cAKUIdB8+U9I="
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  
+  <link rel="stylesheet" href="/css/genel.css" />
+
+	<link rel="icon" href="https://cdn.discordapp.com/avatars/<%=bot.user.id%>/<%=bot.user.avatar%>.png">
+	<title>Wenzy Bot List</title>
+  <style>
+    .cities {
+    background-color: "#FF3000";
+    color: white;
+    margin: 20px;
+    padding: 20px;
+    } 
+		.navigation ul {
+			list-style-type: none;
+		}
+		.navigation ul a {
+			text-decoration: none;
+		}
+		.navigation ul li a {
+			display: block;
+		}
+		.navigation ul li {
+			float:left;
+			width:150px;
+			padding:8px;
+			background: white;
+			border-radius: 42px;
+			margin-right:8px;
+			color: white;
+			text-align: center;
+		}
+		.navigation ul li:hover {
+			background: Bisque;
+			border-radius: 0px;
+			transition-duration: 1.5s;
+		}
+		.navigation li ul {
+			display:none;
+			position:absolute;
+		}
+		.navigation li:hover ul {
+			display:block;
+			margin-top:9px;
+			margin-left:-49px;
+		}
+		.navigation li ul li {
+			clear:both;
+			display : block;
+			border-radius: 0px;
+			padding: 3px;
+			cursor: pointer;
+		}
+		.navigation li ul li a {
+			display: block;
+		}
+		.basarili {
+			background:url(http://4.bp.blogspot.com/-jeu83lGlWHs/T5uOBF3BUmI/AAAAAAAACn4/NbgkRV3RqNM/s1600/buton-sprite.png) #eefec2 no-repeat left;
+			background-position: left -11px;
+			height:60px;
+			line-height:60px;
+			padding:0 0 0 60px;
+			margin:0 0 10px 0;
+			border:1px solid #badc5d;
+			-webkit-border-radius: 3px;  
+			-moz-border-radius: 3px;  
+			border-radius: 3px;
+		}
+		.hata {
+			background:url(http://4.bp.blogspot.com/-jeu83lGlWHs/T5uOBF3BUmI/AAAAAAAACn4/NbgkRV3RqNM/s1600/buton-sprite.png) #ffe59d no-repeat left;
+			background-position: left -11px;
+			height:60px;
+			line-height:60px;
+			padding:0 0 0 60px;
+			margin:0 0 10px 0;
+			border:1px solid #c8b26f;
+			-webkit-border-radius: 3px;  
+			-moz-border-radius: 3px;  
+			border-radius: 3px;
+		}
+    .x a {
+      color:#999;
+    }
+    .x a:hover {
+      color:#fff;
+      background-color:transparent;
+    }
+	</style>
+  <script type="text/javascript">
+			function myFunction() {
+				var x = document.getElementById("myTopnav");
+				if (x.className === "topnav") {
+					x.className += " responsive";
+				} else {
+					x.className = "topnav";
+				}
+			}
+</script>
+</head>
+ 
+<!--
+     <a id="top" name="top"></a>
+ 
+<div class="topnav" id="myTopnav">
+			<a href="/" class="active">Ana Sayfa</a>
+      <a href="/botlar">Botlar</a>
+			<a href="/hakkimizda">Hakkımızda</a>
+			<% if (!user) { %>
+      <a href="/giris">Giriş Yap</a>
+      <% } else { %>
+      <a href="/botekle">Bot Ekle</a>
+			<a href="/cikis">Çıkış Yap</a>
+			<a href="/kullanici/<%=user.id%>">
+      <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.png?size=32" width="25" height="25" class="d-inline-block align-middle rounded-circle" alt="Kullanıcı Avatar">
+      <%=user.username%>
+      </a>
+      <% if (bot.yetkililer.includes(user.id) === true) { %>
+      <a href="/yetkili">Yetkili Paneli</a>
+      <% } %>
+      <% } %>	
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div> -->
+
+    <body bgcolor="#1c1c1c">
+<div class="wrapper">
+    <div class="sidebar">
+      <div class="img"><img src="https://cdn.discordapp.com/avatars/<%=bot.user.id%>/<%=bot.user.avatar%>.png" width="128px" height="128px" class="d-inline-block align-top rounded-circle" alt=""></div>
+        <ul>
+            <li><a href="/"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+          <li><a href="/botlar"><i class="fas fa-robot"></i>Botlar</a></li>
+            <li><a href="/botekle"><i class="fas fa-plus-circle"></i>Bot Ekle</a></li>
+          <% if (!user) { %>
+            <li><a href="/giris"><i class="fas fa-sign-in-alt"></i>Giriş Yap</a></li>
+      <% } else { %>
+          <li><a href="/hakkimizda"><i class="fas fa-info-circle"></i>Hakkımızda</a></li>
+                              <li><a href="https://discord.gg/c6wfPZR"><i class="fas fa-stamp"></i>Discord  Sunucumuz</a></li>
+      	<li class="item button"><a href="/kullanici/<%=user.id%>/profil">
+      <%=user.username%> 
+      </a>
+     <% if (bot.yetkililer.includes(user.id) === true) { %>
+      <li><a href="/yetkili"><i class="fas fa-user-cog"></i>Yetkili Paneli</a>
+      <% } %>
+     
+		<% } %>
+           </ul>
+    </div>
+           
+    
+      		<% if (!user) { %>
+   <li class="item button"><a href="/giris">Giriş Yap</a>
+      <% } else { %>
+      	<li class="item button"><a href="/kullanici/<%=user.id%>/profil">
+      <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.png?size=32" width="25" height="25" class="d-inline-block align-middle rounded-circle" alt="Kullanıcı Avatar">
+      <%=user.username%>
+      </a>
+     <% if (bot.yetkililer.includes(user.id) === true) { %>
+      <li class="item button"><a href="/yetkili">Yetkili Paneli</a>
+      <% } %>
+     
+		<% } %>
+           </ul>
+    </div>
+
+  </body>
+  
+<style>
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+.headers{
+  
+  margin: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px;
+  color: #1c1c1c;
+  
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+   background-color: #1c1c1c;
+}
+
+.wrapper{
+  display: flex;
+  position: relative;
+}
+
+.wrapper .sidebar{
+  width: 200px;
+  height: 100%;
+  background: #5260ff;
+  padding: 30px 0px;
+  position: fixed;
+}
+
+.wrapper .sidebar .img img{
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.wrapper .sidebar img{
+  margin-left: 18%;
+}
+
+.wrapper .sidebar ul li{
+  padding: 15px;
+  transition: 0.7s;
+}    
+
+.wrapper .sidebar ul li a{
+  color: White;
+  display: block;
+}
+
+.wrapper .sidebar ul li a .fas{
+text-align: center;
+  width: 35px;
+  transition: 0.7s;
+}
+
+.wrapper .sidebar ul li:hover{
+  text-align: center;
+  background-color: #cdceff;
+  transition: 0.7s;
+}
+    
+.wrapper .sidebar ul li:hover a{
+  color: #fff;
+  transition: 0.7s;
+}
+
+.wrapper .main_content{
+  width: 100%;
+  margin-left: 200px;
+}
+
+.wrapper .main_content .header{
+  padding: 20px;
+  background: #90CAF9;
+  color: #444;
+  border-bottom: 1px solid #e0e4e8;
+  text-align: center;
+  font-family:  Verdana, Arial, Helvetica, sans-serif; 
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.wrapper .main_content .info{
+  margin: 50px;
+  color: Black;
+  line-height: 35px;
+  margin-left: 500px;
+}
+
+.wrapper .main_content .info img{
+  margin-right: 20px;
+  margin: 15px;
+  color: Black;
+  line-height: 35px;
+  border-radius: 10%;
+  width: 10px;
+  height: 150px;
+  box-shadow: 0px 0px 10px #FFA726;
+  transition:all 0.5s;
+}
+
+.wrapper .main_content .info img:hover{
+  margin-right: 20px;
+  margin: 5px;
+  color: Black;
+  line-height: 35px;
+  border-radius: 10%;
+  width: 170px;
+  height: 170px;
+  box-shadow: 5px 5px 10px #FFA726;
+  transition:all 0.5s;
+}
+
+.wrapper .main_content .info div{
+  margin-bottom: 40px;
+}
+
+@media (max-height: 500px){
+  .social_media{
+    display: none !important;
+  }
+}
+
+</style>
+  <div class="container">

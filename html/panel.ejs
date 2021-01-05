@@ -1,0 +1,67 @@
+<%- include('ek/header', {bot, user, path}) %>
+<div class="info">
+<div class="container">
+  
+  <div align="center" class="jumbotron">
+       <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.png?size=512" class="rounded-circle panell">
+       <h5 style="color:#fff"><%=user.username%>#<%=user.discriminator%></h5>
+      <h6 style="color:#fff">Botların;</h6>
+  </div>
+  
+  <% if (bot.ayar.has('botlar')) { %>
+       <% if (bot.ayar.has(`kbotlar.${user.id}`)) { %>   
+
+<%for(var i = 0; i < Object.keys(bot.ayar.fetch('botlar')).length; i++) {%>
+<% var idd = Object.keys(bot.ayar.fetch('botlar'))[i] %>
+ <%  if (bot.ayar.fetch(`botlar.${idd}.sahipid`) === user.id) { %>
+  <div class="col-12 col-sm-6 col-md-4">
+        <div class="card card-lg botcard" style="width:14rem;height:16rem;background:#ffcdd2;">
+    <div value="<%=bot.useful.seg(bot.ayar.fetch(`botlar.${idd}.isim`), 5)%>" align="center" class="card-img">
+  
+            <a name="aramaResim" id="aramaResim" href="/bot/<%=idd%>" style="color:#fff"><img  src="<%=bot.ayar.fetch(`botlar.${idd}.avatar`)%>" style="width:50%;margin:5px;border-radius:50%;" <%=bot.useful.seg(bot.ayar.fetch(`botlar.${idd}.isim`), 5)%></a>
+    
+          <% if(bot.ayar.has(`botlar.${idd}.sertifika`) === true) { %>
+       
+            <img src="https://cdn3.iconfinder.com/data/icons/study-education-9/96/success_medal_done-512.png" width="30px" height="30px">
+       <% } %>
+       <div class="badge badge-primary"><strong style='color: white;'>Oy: </strong><span style='color:whitesmoke;text-transform: none;'><%=bot.ayar.fetch(`botlar.${idd}.oy`)||0%></span></div>
+                     
+          </div>
+      <div align="center" class="card-body">
+                               <div class="card-title">
+                                      <h5><a style="color:#212121"><%=bot.useful.seg(bot.ayar.fetch(`botlar.${idd}.isim`), 5)%></a></h5>
+                             
+                                <h6 style="font-size:17px; color:#212121"><%=bot.ayar.fetch(`botlar.${idd}.sahip`)%></h6></div>         
+                              <h6 align="center"><a href="/bot/<%=idd%>" style="font-size:15px; color:#7289da;">Görüntüle</a> <b style="color:grey">
+                            </div>
+                       </div><br>
+   </div>
+<% } %>
+  <% } %>
+</div>
+      
+      <% } else if (!bot.ayar.has(`kbotlar.${user.id}`)) {%>
+           <h5 style="color:#222">
+             Sistemde sana ait bir bot bulunmuyor!
+      </h5>
+      <% } %>
+      <% } else if (!bot.ayar.has('botlar')) {%>
+           <h5 style="color:#222">
+             Sistemde hiç bot bulunmuyor.
+      </h5>
+      <% } %>
+      
+</div>
+</div></div>
+<style>
+  .info{
+  margin: 50px;
+  color: Black;
+  line-height: 35px;
+  margin-left: 20%;
+  margin-top: -2%;
+  }
+  .jumbotron {
+    background:transparent;
+  }
+</style>

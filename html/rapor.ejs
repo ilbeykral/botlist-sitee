@@ -1,0 +1,44 @@
+<%- include('ek/header', {bot, user, path}) %>
+<div class="info">
+<div class="container">
+	<div class="jumbotron">
+		<div align="center">
+      <form method="POST">
+      <select class="form-control" id="mesaj-1" name="mesaj-1">
+        <option selected disabled>Sebep seçiniz.</option>
+        <option value="Alt Yapı">Bot Tamamen Alt Yapı</option>
+        <option value="Çalıntı Kodlar">Çalıntı Kodlardan Oluşuyor</option>
+        <option value="Tamamen NSFW">Bot Tamamen NSFW</option>
+        <option value="Saldırı Botu">Saldırı Botu</option>
+      </select>
+      <br>
+        <br>
+      <h6 style="color:#fff">Rapor etme sebebini yukarıda bulamadın mı?</h6>
+      <input class="ss" id="mesaj-2" name="mesaj-2" placeholder="Rapor sebebini yazınız!">
+   <br>
+        <br>
+        <button class="btn btn-danger" type="sumbit">Rapor Et</button>
+      </form>
+    </div>
+</div>
+</div>
+<style>
+  .info{
+  margin: 50px;
+  color: Black;
+  line-height: 35px;
+  margin-left: 20%;
+  margin-top: -2%;
+  }
+    .ss{
+            all: unset;
+            background: #212121;
+            border: 1px solid white;
+            padding: 0.5em 4em;
+            border-radius: 10px;
+            display: inline-block;
+            position: relative;
+            transition: all 300ms ease;
+      color: #fff;
+  }
+</style>
